@@ -20,9 +20,9 @@ for s_period = 1:s_nbPeriod
         if b_valid
             s_count = s_count + 1;
             [m_vm, v_TimeAxis, v_FreqAxis] = ...
-            f_GaborTransformWait(v_unitVm,st_info(1).header.Sampling,...
+            compute_TF(v_unitVm,st_info(1).header.Sampling,...
                                     s_freqMin,s_freqMax,s_nbBands);
-            m_EEG = f_GaborTransformWait(v_unitEEG,st_info(2).header.Sampling...
+            m_EEG = compute_TF(v_unitEEG,st_info(2).header.Sampling...
                                             ,s_freqMin,s_freqMax,s_nbBands);
 %% Build inter-frequency interval correlation matrix %%                                        
             m_corrsAux = zeros(s_nbBands); %one2one correlations
@@ -54,29 +54,28 @@ for s_period = 1:s_nbPeriod
             figure(7)
                 subplot(3,2,1)
                 plot(time,v_unitVm);
-                title('Intra');xlabel('Temps (sec)');ylabel('Fréquence (Hz)');
+                title('Intra');xlabel('Temps (sec)');ylabel('Frï¿½quence (Hz)');
             subplot(3,2,2)
                 plot(time,v_unitEEG)
-                title('EEG');xlabel('Temps (sec)'); ylabel('Fréquence (Hz)');
+                title('EEG');xlabel('Temps (sec)'); ylabel('Frï¿½quence (Hz)');
             subplot(3,2,3)
                 f_ImageArray(m_vm,v_TimeAxis, v_FreqAxis,'colormap','jet');
                 title('Intra');
-                xlabel('Temps (sec)'); ylabel('Fréquence (Hz)');
+                xlabel('Temps (sec)'); ylabel('Frï¿½quence (Hz)');
             subplot(3,2,4);
                 f_ImageArray(m_EEG,v_TimeAxis, v_FreqAxis,'colormap','jet')
                 title('EEG');
-                xlabel('Temps (sec)'); ylabel('Fréquence (Hz)');
+                xlabel('Temps (sec)'); ylabel('Frï¿½quence (Hz)');
             subplot(3,1,3);
                 f_ImageArray(m_corrs,v,v,'colormap','jet');
-                title('Correlations inter bandes de fréquence');
-                xlabel('Fréquence Intra (Hz)'); ylabel('Fréquence EEG (Hz)');            
+                title('Correlations inter bandes de frï¿½quence');
+                xlabel('Frï¿½quence Intra (Hz)'); ylabel('Frï¿½quence EEG (Hz)');            
         
           
             figure(17)
             f_ImageArray(m_corrstot,v,v,'colormap','jet');
-            title('Correlations inter bandes de fréquence');
-            xlabel('Fréquence Intra (Hz)'); ylabel('Fréquence EEG (Hz)');  
-%                     keyboard;
+            title('Correlations inter bandes de frï¿½quence');
+            xlabel('Frï¿½quence Intra (Hz)'); ylabel('Frï¿½quence EEG (Hz)');  
 
         end
         
@@ -88,5 +87,5 @@ m_corrstot=m_corrstot./s_count;
 
 figure(2)
 f_ImageArray(m_corrstot,v,v,'colormap','jet');
-title('Correlation moyenne entre bandes de fréquence');
-xlabel('Fréquence Intra (Hz)'); ylabel('Fréquence EEG (Hz)');  
+title('Correlation moyenne entre bandes de frï¿½quence');
+xlabel('Frï¿½quence Intra (Hz)'); ylabel('Frï¿½quence EEG (Hz)');  
